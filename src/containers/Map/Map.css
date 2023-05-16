@@ -1,5 +1,14 @@
+@import "../../../node_modules/ol/ol.css";
+
 
 #map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+  #map {
     width: 90%;
     height: 20rem;
     border: 1px solid #ccc;
