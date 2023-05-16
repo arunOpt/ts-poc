@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TodoList from '../../components/TodoList';
+import NewTodo from '../../components/NewTodo';
+import { Todo as TodoModal } from './todo.model';
 
-const Todo:React.FC=()=>{
+const Todo: React.FC = () => {
+  const [todos, setTodos] = useState<TodoModal[]>([]);
+
+  const todoAddHandler = (text: string) => {
+    setTodos(prevTodos => [
+      ...prevTodos,
+      { id: Math.random().toString(), text: text }
+    ]);
+  };
+
+  const todoDeleteHandler = (todoId: string) => {
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => todo.id !== todoId);
+    });
+  };
+
   return (
-    <div >
-        
+    <div className="App">
+      <NewTodo onAddTodo={todoAddHandler} />
+      <TodoList items={todos} onDeleteTodo={todoDeleteHandler} />
     </div>
   );
-}
+};
 
 export default Todo;
